@@ -1,0 +1,37 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Reports{% endblock %}
+
+{% block body %}
+    <div class="split-container">
+        
+        <div class = "aside">
+            <h1> Kursmoment </h1>
+            <ul>
+                <li><a href="#kmom01"> Kmom01</a></li>
+            </ul>
+        </div>
+        
+        <div class = "main">
+            <div id="kmom01">
+                <h1> Kmom01 </h1>
+
+                <p>
+                    Vi har nu programmerat 3 kurser i obektorientering i språken javascript, python och nu php.
+                    Strukturen har varit sig lik och jag känner att man lärst sig mycket med o-orienterat. Så man har en ganska
+                    bra bild av hur det funkar, men det kan alltid bli mer invecklat.
+                    oo i php är likt andra språk och har dem väsentliga delarna som Metoder, konstruktor, egenskaper, inkaplsulering, klasser, objekt och instans
+                    kan man dessa viktiga beståndsdelar så är man på god väg och kan dem viktiga grunderna in objekt orientering i php.
+                    Sen bör man förstå default parametrar export/import och initiering för att hantera objekten bra.
+                    Kod strukturen är sig lik men skiljer sig mer från js och python. Namespacing är en ny teknik och hur själva framworket i sig
+                    själv använder controllers känns lite udda en så länge. Controllerserna eller routsen skiljer sig lite också från tex express routes.
+                    Dem har inget req res objekt som parametrar man får istället göra ett response objekt i kontrollern. I php the rightway läste jag på om 
+                    Namespaces för att förstå dem sedan om "the basics" som time funktioner. Jag skulle vilja veta mer om hur man får fram tex query data 
+                    och data liknakde ett req objekt. Mitt TIL är att Namespacing är viktigt när det blir stora libraries så classer inte krockar.
+                </p>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

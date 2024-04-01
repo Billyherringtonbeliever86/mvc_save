@@ -1,0 +1,29 @@
+{% extends "base.html.twig" %}
+
+{% block title %}About{% endblock %}
+
+{% block body %}
+    <div class="split-container">
+        
+        <div class = "aside">
+            <h1> Länkar </h1>
+            <h2><a href="https://github.com/dbwebb-se/mvc/tree/main">Mvc Github </a></h2>
+            <h2><a href="https://github.com/Billyherringtonbeliever86/mvc_save.git">Mitt egna Gitrepo </a></h2>
+
+        </div>
+        
+        <div class = "main">
+            <h1> About </h1>
+            <p>
+                Kursen MVC "Model View Controller" är en kurs i att lära sig struktuera och programmera
+                en webbaplikation med Controllers och Views i ramverket Symfony.
+                Vi kommer forsätta och utveckla i Objekt orienterad programmering denna gång i språket php.
+                Vi kommer även använda JSON genererade sidor och JSON api för olika språk eller applikationer
+                ska kunna använda varandra tex att ta emot data i JSON-format
+            </p>
+            <img src="{{ asset('img/php-code.jpeg')}}" alt="bild" width = "550px">
+        </div>
+    </div>
+
+
+{% endblock %}

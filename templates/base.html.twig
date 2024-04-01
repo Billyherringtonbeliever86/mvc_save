@@ -13,7 +13,22 @@
             {% block importmap %}{{ importmap('app') }}{% endblock %}
         {% endblock %}
     </head>
+    <header class="head">
+        <h1> MVC 2024 </h1>
+    </header>
+    <nav class="navigation">
+    <a href="/about">About</a>
+    <a href="/report">Report</a>
+    <a href="/">Me</a>
+    <a href="/lucky">Lucky</a>
+    <a href="api/">JSON apis</a>
+
+
+    </nav>
     <body>
         {% block body %}{% endblock %}
     </body>
+    <footer class="foot">
+    <p> Av Daniel Svensson dasv22 </p>
+    </footer>
 </html>
