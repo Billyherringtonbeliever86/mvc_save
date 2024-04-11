@@ -7,7 +7,6 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-
 class ControllerJSON extends AbstractController
 {
     #[Route("/api")]
@@ -39,6 +38,6 @@ class ControllerJSON extends AbstractController
         $response->setEncodingOptions(
             $response->getEncodingOptions() | JSON_PRETTY_PRINT
         );
-        return $response;    }
+        return $response;
+    }
 }
-
