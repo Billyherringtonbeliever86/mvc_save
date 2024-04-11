@@ -1,7 +1,7 @@
 
 MVC 2024
 dasv22
-Gjort av Daniel Svensson
+
 
 TO clone the repo make an empty folder in your terminal.
 go into the folder and run the following:

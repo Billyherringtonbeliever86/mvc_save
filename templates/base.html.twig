@@ -17,11 +17,11 @@
         <h1> MVC 2024 </h1>
     </header>
     <nav class="navigation">
-    <a href="/about">About</a>
-    <a href="/report">Report</a>
-    <a href="/">Me</a>
-    <a href="/lucky">Lucky</a>
-    <a href="api/">JSON apis</a>
+    <a href="{{ app.request.baseUrl }}/about">About</a>
+    <a href="{{ app.request.baseUrl }}/report">Report</a>
+    <a href="{{ app.request.baseUrl }}/">Me</a>
+    <a href="{{ app.request.baseUrl }}/lucky">Lucky</a>
+    <a href="{{ app.request.baseUrl }}/api">JSON apis</a>
 
 
     </nav>

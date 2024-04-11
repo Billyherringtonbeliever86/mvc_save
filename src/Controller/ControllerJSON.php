@@ -10,7 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ControllerJSON extends AbstractController
 {
-    #[Route("api/")]
+    #[Route("/api")]
     public function apis(): Response
     {
         return $this->render('apis.html.twig');
