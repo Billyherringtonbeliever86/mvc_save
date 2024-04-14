@@ -74,3 +74,53 @@ body {
     margin: 20px;
     
 }
+
+/* kmom02 */
+/* body {
+    margin: 0 auto;
+    max-width: 800px;
+    background-color: #eee;
+    font-size: 2em;
+} */
+main {
+    padding: 0.5em;
+}
+
+input {
+    font-size: 1em;
+}
+
+
+.die {
+    font-size: 3em;
+}
+
+ul .dicearea{
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+ul .dicearea li {
+    display: inline;
+}
+
+.flash-notice {
+    padding: 0.5em;
+    color: #004085;
+    background-color: #cce5ff;
+    border-color: #b8daff;
+}
+.flash-notice:before {
+    content: "ⓘ";
+}
+
+.flash-warning {
+    padding: 0.5em;
+    color: #856404;
+    background-color: #fff3cd;
+    border-color: #ffeeba;
+}
+.flash-warning:before {
+    content: "⚠";
+}
