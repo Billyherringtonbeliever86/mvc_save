@@ -83,7 +83,9 @@ body {
     font-size: 2em;
 } */
 main {
+    margin: 0 auto;
     padding: 0.5em;
+    width: 70%;
 }
 
 input {
