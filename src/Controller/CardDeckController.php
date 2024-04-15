@@ -10,7 +10,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 use App\Card\Card;
+use App\Card\CardHand;
 use App\Card\CardGraphic;
+use App\Card\DeckOfCards;
 
 Class CardDeckController extends AbstractController
 {
@@ -50,9 +52,25 @@ Class CardDeckController extends AbstractController
         $card = new Card();
         $card->deal();
         echo $card->getCard();
+        echo "<br>";
         $card2 = new CardGraphic();
         $card2->deal();
         echo $card2->getType(), $card2->getCard();
+        echo "<br>";
+
+        $hand = new CardHand();
+        $hand->add($card);
+        $hand->add($card2);
+        echo "cards ";
+        var_dump($hand->getCards());
+        echo"<br>";
+        $card3 = new Card("4", "Hearts");
+        echo $card3->getCard();
+        echo "<br>";
+        $cardDeck = new DeckOfCards();
+        var_dump($cardDeck->getDeck());
+
+
         return $this->render('card/card.html.twig');
     }
 

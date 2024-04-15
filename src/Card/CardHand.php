@@ -25,11 +25,11 @@ class CardHand
         return count($this->hand);
     }
 
-    public function getCard(): array
+    public function getCards(): array
     {
         $values = [];
         foreach ($this->hand as $card) {
-            $values[] = $card->getValue();
+            $values[] = $card->getCard();
         }
         return $values;
     }
