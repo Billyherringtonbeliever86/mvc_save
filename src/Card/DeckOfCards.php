@@ -4,7 +4,8 @@ namespace App\Card;
 use App\Card\Card;
 
 class DeckOfCards 
-{
+{   
+    // NOTE array is filled with card OBJECTS not string representations
     private $cardDeck = [];
     public $values = ["2","3","4","5","6","7","8","9","10","J","Q","K","A"];
     public $types = ["Hearts", "Clubs", "Spades", "Diamonds"];
@@ -26,5 +27,14 @@ class DeckOfCards
     public function getDeck(): array
     {
         return $this->cardDeck;
+    }
+
+    public function getDeckCards(): array
+    {
+        $deck = [];
+        foreach ($this->cardDeck as $card) {
+            $deck[] = $card->getCard();
+        }
+        return $deck;
     }
 }

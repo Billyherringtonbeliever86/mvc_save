@@ -1,13 +1,21 @@
 {% extends "base.html.twig" %}
 {% block body %}
     <main class="main">
+    <a href={{path('session_delete')}}> clear session </a>
         <ul>
-            {% for key in sessionArray|keys %}
-                <li>{{ key }} : {{ sessionArray[key] }}</li>
-            {% endfor %}
+            <li> pig_total {{sessionArray['pig_total']}} </li>
+            <li> pig_dices {{sessionArray['pig_dices']}} </li>
+            <li> pig_round {{sessionArray['pig_round']}} </li>
+            <p></p>
+            
+               
         </ul>
+        DeckOfCards session 'card_deck' <br>
+        {% for card in sessionArray['card_deck'].getDeckCards() %}
+                <span> {{card}} </span>
+        {%endfor%}  
 
-        <a href={{path('session_delete')}}> clear session </a>
+        
         {{ include('flash.html.twig') }}
     </main>
 

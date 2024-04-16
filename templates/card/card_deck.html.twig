@@ -1,0 +1,13 @@
+{% extends "base.html.twig" %}
+{% block body %}
+    <main class="main">
+        <h1>Card Deck</h1>
+        <div class="card-container">
+            {% for card in card_deck.getDeckCards() %}
+                <div class="card">
+                    <h2>{{ card }}</h2>
+                </div>
+            {% endfor %}
+        </div>
+    </main>
+{% endblock %}

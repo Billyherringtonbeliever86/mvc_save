@@ -27,6 +27,7 @@ Class CardDeckController extends AbstractController
         $sessionArray["pig_total"] = ($sessionData->get('pig_total'));
         $sessionArray["pig_dices"] = ($sessionData->get('pig_dices'));
         $sessionArray["pig_round"] = ($sessionData->get('pig_round'));
+        $sessionArray["card_deck"] = ($sessionData->get('card_deck'));
 
         return $this->render('session.html.twig', [
             'sessionArray' => $sessionArray,
@@ -47,8 +48,12 @@ Class CardDeckController extends AbstractController
     }
 
     #[Route("/card", name: "card")]
-    public function card(): Response
+    public function card(
+        SessionInterface $session
+    ): Response
+        
     {
+
         $card = new Card();
         $card->deal();
         echo $card->getCard();
@@ -61,17 +66,44 @@ Class CardDeckController extends AbstractController
         $hand = new CardHand();
         $hand->add($card);
         $hand->add($card2);
-        echo "cards ";
+        echo "cards hand ";
         var_dump($hand->getCards());
         echo"<br>";
         $card3 = new Card("4", "Hearts");
         echo $card3->getCard();
         echo "<br>";
-        $cardDeck = new DeckOfCards();
-        var_dump($cardDeck->getDeck());
+        $data = [
 
-
-        return $this->render('card/card.html.twig');
+        ];
+        $deck = $session->get('card_deck');
+        // var_dump($deck);
+        return $this->render('card/card.html.twig', $data);
     }
 
+    #[Route("/card/init", name: "card_init")]
+    public function cardInit(
+        Request $request,
+        SessionInterface $session
+    ): Response
+    {
+        $cardDeck = new DeckOfCards();
+        $session->set("card_deck", $cardDeck);
+
+
+        return $this->redirectToRoute('card');
+    }
+
+
+    #[Route("/card/deck", name: "card_deck")]
+    public function cardDeck(
+        Request $request,
+        SessionInterface $session
+    ): Response
+    {
+        $data = [
+            "card_deck" => ($session->get('card_deck')),
+        ];
+        // var_dump($data["card_deck"]);
+        return $this->render('card/card_deck.html.twig', $data);
+    }
 }
