@@ -66,7 +66,7 @@ class DeckOfCards
 
     public function arrangeDeck(): void 
     {   
-        echo "arange";
+        // echo "arange";
         $arrangedDeck = [];
         $i = 0;
         foreach ($this->cardDeck as $card) {

@@ -28,6 +28,8 @@ Class CardDeckController extends AbstractController
         $sessionArray["pig_dices"] = ($sessionData->get('pig_dices'));
         $sessionArray["pig_round"] = ($sessionData->get('pig_round'));
         $sessionArray["card_deck"] = ($sessionData->get('card_deck'));
+        $sessionArray["drawn_cards"] = ($sessionData->get('drawn_cards'));
+
 
         return $this->render('session.html.twig', [
             'sessionArray' => $sessionArray,
@@ -53,31 +55,7 @@ Class CardDeckController extends AbstractController
     ): Response
         
     {
-
-        $card = new Card();
-        $card->deal();
-        echo $card->getCard();
-        echo "<br>";
-        $card2 = new CardGraphic();
-        $card2->deal();
-        echo $card2->getType(), $card2->getCard();
-        echo "<br>";
-
-        $hand = new CardHand();
-        $hand->add($card);
-        $hand->add($card2);
-        echo "cards hand ";
-        var_dump($hand->getCards());
-        echo"<br>";
-        $card3 = new Card("4", "Hearts");
-        echo $card3->getCard();
-        echo "<br>";
-        $data = [
-
-        ];
-        $deck = $session->get('card_deck');
-        // var_dump($deck);
-        return $this->render('card/card.html.twig', $data);
+        return $this->render('card/card.html.twig');
     }
 
     #[Route("/card/init", name: "card_init")]
@@ -88,6 +66,7 @@ Class CardDeckController extends AbstractController
     {
         $cardDeck = new DeckOfCards("graphic");
         $session->set("card_deck", $cardDeck);
+        $session->set("drawn_cards", []);
 
 
         return $this->redirectToRoute('card');
@@ -140,15 +119,19 @@ Class CardDeckController extends AbstractController
         return $this->render('card/card_deck.html.twig', $data);
     }
 
-    #[Route("/card/deck/draw", name: "card_deck_draw")]
+    #[Route("/card/deck/draw/", name: "card_deck_draw")]
     public function cardDeckDraw(
         Request $request,
         SessionInterface $session
     ): Response
     {
+        
         $deck = $session->get('card_deck');
         $card = $deck->draw();
         var_dump($card->getPosition());
+        $drawnCards = $session->get('drawn_cards');
+        $drawnCards[] = $card;
+        $session->set("drawn_cards", $drawnCards);
         $session->set("card_deck", $deck);
         $data = [
             "card_draw" => $card,
@@ -157,4 +140,34 @@ Class CardDeckController extends AbstractController
         
         return $this->render('card/card_deck_draw.html.twig', $data);
     }
+
+    
+    #[Route("/card/deck/draw/{num<\d+>}", name: "card_deck_draw_number")]
+    public function cardDeckDrawNumber(
+        int $num,
+        Request $request,
+        SessionInterface $session
+    ): Response
+    {
+        
+        $deck = $session->get('card_deck');
+        if ($num > count($deck->getDeck())) {
+            throw new \Exception("För högt nummer!");
+        }
+
+        $card = $deck->draw($num);
+        var_dump($card->getPosition());
+        $drawnCards = $session->get('drawn_cards');
+        $drawnCards[] = $card;
+        $session->set("drawn_cards", $drawnCards);
+        $session->set("card_deck", $deck);
+        $data = [
+            "card_draw" => $card,
+            "card_deck" => ($session->get('card_deck')),
+        ];
+        
+        return $this->render('card/card_deck_draw.html.twig', $data);
+    }
+
+    
 }
