@@ -3,9 +3,11 @@
     <main class="main">
         <h1>Card Deck</h1>
         <div class="card-container">
-            {% for card in card_deck.getDeckCards() %}
+            {% for card in card_deck.getDeck() %}
                 <div class="card">
-                    <h2>{{ card }}</h2>
+                    <h3 class="{{card.getType()}} type">{{card.getType()}}</h3>
+                    <h3 class="value {{card.getType()}}">{{ card.getValue()}}</h3>
+                    
                 </div>
             {% endfor %}
         </div>

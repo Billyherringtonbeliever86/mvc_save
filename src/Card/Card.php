@@ -6,6 +6,7 @@ class Card
 {
     protected $card;
     protected $type;
+    protected $value;
     public $values = ["2","3","4","5","6","7","8","9","10","J","Q","K","A"];
     public $types = ["Hearts", "Clubs", "Spades", "Diamonds"];
 
@@ -16,6 +17,7 @@ class Card
         } else {
             $this->card = "$type " . "$value";
             $this->type = $type;
+            $this->value = $value;
         }
     }
 
@@ -31,6 +33,11 @@ class Card
     public function getCard(): string
     {
         return $this->card;
+    }
+
+    public function getValue(): string 
+    {
+        return $this->value;
     }
 
     public function getType(): string 

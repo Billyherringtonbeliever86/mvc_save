@@ -8,7 +8,7 @@ body {
     background-color: #fff;
     padding: 20px;
     border-radius: 25px;
-    height: 600px;
+    min-height: 600px;
 }
 
 .maincrazy {
@@ -125,4 +125,43 @@ ul .dicearea li {
 }
 .flash-warning:before {
     content: "⚠";
+}
+
+.card-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    margin: 0 auto;
+    max-width: 360px;
+}
+
+.card {
+    display: flex;
+    position: relative;
+    width: 80px;
+    height: 120px;
+    border: #000 solid 3px;
+    border-radius: 10px;
+    margin-top: 7px;
+    font-size: 30px;
+
+}
+
+.type {
+    position: absolute;
+    bottom: 50px;
+    left: 5px;
+}
+
+.value {
+    position: absolute;
+    top:7px;
+    left: 30px;
+
+}
+.♥ , .♦{
+    color: #f10000;
+}
+
+.♠ ,.♣ {
+    color: #000000;
 }

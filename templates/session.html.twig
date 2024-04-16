@@ -11,10 +11,11 @@
                
         </ul>
         DeckOfCards session 'card_deck' <br>
-        {% for card in sessionArray['card_deck'].getDeckCards() %}
-                <span> {{card}} </span>
-        {%endfor%}  
-
+        {% if sessionArray['card_deck'] != null%}
+            {% for card in sessionArray['card_deck'].getDeckCards() %}
+                    <span> {{card}} </span>
+            {%endfor%}  
+        {%endif%}
         
         {{ include('flash.html.twig') }}
     </main>

@@ -2,6 +2,7 @@
 
 namespace App\Card;
 use App\Card\Card;
+use App\Card\CardGraphic;
 
 class DeckOfCards 
 {   
@@ -10,16 +11,25 @@ class DeckOfCards
     public $values = ["2","3","4","5","6","7","8","9","10","J","Q","K","A"];
     public $types = ["Hearts", "Clubs", "Spades", "Diamonds"];
 
-    public function __construct()
+    // choice is if to use cardGraphic or not
+    public function __construct($choice)
     {
-        $this->initiateCards();
+        $this->initiateCards($choice);
     }
 
-    public function initiateCards(): void
+    public function initiateCards($choice): void
     {   
-        foreach ($this->values as $value) {
-            foreach ($this->types as $type) {
-                $this->cardDeck[] = new Card($value, $type);
+        if ($choice == "standard") {
+            foreach ($this->values as $value) {
+                foreach ($this->types as $type) {
+                    $this->cardDeck[] = new Card($value, $type);
+                }
+            }
+        } elseif ($choice = "graphic") {
+            foreach ($this->values as $value) {
+                foreach ($this->types as $type) {
+                    $this->cardDeck[] = new CardGraphic($value, $type);
+                }
             }
         }
     }

@@ -86,7 +86,7 @@ Class CardDeckController extends AbstractController
         SessionInterface $session
     ): Response
     {
-        $cardDeck = new DeckOfCards();
+        $cardDeck = new DeckOfCards("graphic");
         $session->set("card_deck", $cardDeck);
 
 

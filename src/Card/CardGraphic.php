@@ -10,9 +10,9 @@ class CardGraphic extends Card
         "Clubs" => '♣'
     ];
 
-    public function __construct()
+    public function __construct($value = null, $type = null)
     {
-        parent::__construct();
+        parent::__construct($value, $type);
     }
 
     public function getType(): string
