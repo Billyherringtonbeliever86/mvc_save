@@ -2,13 +2,19 @@
 {% block body %}
     <main class="main">
         <h1>Card Deck</h1>
+        <h2> Drawn card: </h2>
+        <div class="card drawn">
+            <h3 class="{{card_draw.getType()}} type">{{card_draw.getType()}}</h3>
+            <h3 class="value {{card_draw.getType()}}">{{ card_draw.getValue()}}</h3>
+            <p> {{ card_draw.getPosition()}} </p>
+        </div>
+
         <div class="card-container">
             {% for card in card_deck.getDeck() %}
                 <div class="card">
                     <h3 class="{{card.getType()}} type">{{card.getType()}}</h3>
                     <h3 class="value {{card.getType()}}">{{ card.getValue()}}</h3>
                     <p> {{ card.getPosition()}} </p>
-
                 </div>
             {% endfor %}
         </div>

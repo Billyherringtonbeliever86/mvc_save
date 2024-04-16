@@ -100,10 +100,61 @@ Class CardDeckController extends AbstractController
         SessionInterface $session
     ): Response
     {
+        $deck = $session->get('card_deck');
+        $deck->sortDeck();
+        $session->set("card_deck", $deck);
+
         $data = [
             "card_deck" => ($session->get('card_deck')),
         ];
-        // var_dump($data["card_deck"]);
+        
         return $this->render('card/card_deck.html.twig', $data);
+    }
+
+    #[Route("/card/display", name: "card_display")]
+    public function cardDisplay(
+        Request $request,
+        SessionInterface $session
+    ): Response
+    {
+        $data = [
+            "card_deck" => ($session->get('card_deck')),
+        ];
+        
+        return $this->render('card/card_deck.html.twig', $data);
+    }
+
+    #[Route("/card/deck/shuffle", name: "card_deck_shuffle")]
+    public function cardDeckShuffle(
+        Request $request,
+        SessionInterface $session
+    ): Response
+    {
+        $deck = $session->get('card_deck');
+        shuffle($deck->cardDeck);
+        $session->set("card_deck", $deck);
+        $data = [
+            "card_deck" => ($session->get('card_deck')),
+        ];
+        
+        return $this->render('card/card_deck.html.twig', $data);
+    }
+
+    #[Route("/card/deck/draw", name: "card_deck_draw")]
+    public function cardDeckDraw(
+        Request $request,
+        SessionInterface $session
+    ): Response
+    {
+        $deck = $session->get('card_deck');
+        $card = $deck->draw();
+        var_dump($card->getPosition());
+        $session->set("card_deck", $deck);
+        $data = [
+            "card_draw" => $card,
+            "card_deck" => ($session->get('card_deck')),
+        ];
+        
+        return $this->render('card/card_deck_draw.html.twig', $data);
     }
 }

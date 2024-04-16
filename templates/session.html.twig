@@ -12,8 +12,8 @@
         </ul>
         DeckOfCards session 'card_deck' <br>
         {% if sessionArray['card_deck'] != null%}
-            {% for card in sessionArray['card_deck'].getDeckCards() %}
-                    <span> {{card}} </span>
+            {% for card in sessionArray['card_deck'].getDeck() %}
+                    <span> {{card.getCard()}}  {{card.getPosition}} </span>
             {%endfor%}  
         {%endif%}
         

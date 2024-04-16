@@ -7,10 +7,11 @@ class Card
     protected $card;
     protected $type;
     protected $value;
+    protected $index;
     public $values = ["2","3","4","5","6","7","8","9","10","J","Q","K","A"];
     public $types = ["Hearts", "Clubs", "Spades", "Diamonds"];
 
-    public function __construct($value = null, $type = null)
+    public function __construct($value = null, $type = null, $index = null)
     {
         if (!($value && $type)) {
             $this->card = null;
@@ -18,6 +19,7 @@ class Card
             $this->card = "$type " . "$value";
             $this->type = $type;
             $this->value = $value;
+            $this->index = $index;
         }
     }
 
@@ -44,5 +46,15 @@ class Card
     {
         return $this->type;
     }
+
+    public function getPosition(): int
+    {
+        return $this->index;
+    }
+
+    public function setPosition($position): void
+    {
+        $this->index=$position;
+    } 
 
 }

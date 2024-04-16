@@ -165,3 +165,7 @@ ul .dicearea li {
 .♠ ,.♣ {
     color: #000000;
 }
+
+.drawn {
+    size: 5em;
+}
