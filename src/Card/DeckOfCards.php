@@ -12,18 +12,20 @@ class DeckOfCards
     public $types = ["Hearts", "Clubs", "Spades", "Diamonds"];
 
     // choice is if to use cardGraphic or not
+    
     public function __construct($choice)
     {
         $this->initiateCards($choice);
     }
 
+    //  initiates and creates all the cards objects and adds the tho the cardDeck array
     public function initiateCards($choice): void
     {   
         if ($choice == "standard") {
             $i = 0;
             foreach ($this->values as $value) {
                 foreach ($this->types as $type) {
-                    $this->cardDeck[] = new Card($value, $type, $i);
+                    $this->cardDeck[] = new Card($value, $type, $i, $i);
                     $i++;
                 }
             }
@@ -31,18 +33,20 @@ class DeckOfCards
             $i = 0;
             foreach ($this->values as $value) {
                 foreach ($this->types as $type) {
-                    $this->cardDeck[] = new CardGraphic($value, $type, $i);
+                    $this->cardDeck[] = new CardGraphic($value, $type, $i, $i);
                     $i++;
                 }
             }
         }
     }
 
+    //  returns the cardDeck array
     public function getDeck(): array
     {
         return $this->cardDeck;
     }
 
+    //  returns and deck array with all the card respresented as strings in an array;
     public function getDeckCards(): array
     {
         $deck = [];
@@ -52,18 +56,23 @@ class DeckOfCards
         return $deck;
     }
 
+    // sorts the this cardDeck variable based on the individuals card object sortIndex number
+    // 
     public function sortDeck(): void 
     {
         $sortedDeck = [];
         foreach ($this->cardDeck as $card) {
-            $position = $card->getPosition();
+            $position = $card->getSortIndex();
+            $card->setPosition($position);
             $sortedDeck[$position] = $card;
-
+            
         }
         ksort($sortedDeck);
         $this->cardDeck = $sortedDeck;
     }
 
+    // fixes the cardDecks card ibject index position and every Card object internal index variable to the same and 
+    // reasures no numbers are skipped in the deck for example when a card has been drawn.
     public function arrangeDeck(): void 
     {   
         // echo "arange";
@@ -77,6 +86,7 @@ class DeckOfCards
         $this->cardDeck = $arrangedDeck;
     }
 
+    // draws and removes and returns a card.
     public function draw($position=null): object 
     {
         if ($position == null) {

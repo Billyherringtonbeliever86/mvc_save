@@ -53,7 +53,6 @@ Class CardDeckController extends AbstractController
     public function card(
         SessionInterface $session
     ): Response
-        
     {
         return $this->render('card/card.html.twig');
     }
@@ -81,6 +80,7 @@ Class CardDeckController extends AbstractController
     {
         $deck = $session->get('card_deck');
         $deck->sortDeck();
+        $deck->arrangeDeck();
         $session->set("card_deck", $deck);
 
         $data = [
@@ -111,6 +111,7 @@ Class CardDeckController extends AbstractController
     {
         $deck = $session->get('card_deck');
         shuffle($deck->cardDeck);
+        $deck->arrangeDeck();
         $session->set("card_deck", $deck);
         $data = [
             "card_deck" => ($session->get('card_deck')),
@@ -128,7 +129,6 @@ Class CardDeckController extends AbstractController
         
         $deck = $session->get('card_deck');
         $card = $deck->draw();
-        var_dump($card->getPosition());
         $drawnCards = $session->get('drawn_cards');
         $drawnCards[] = $card;
         $session->set("drawn_cards", $drawnCards);
@@ -154,9 +154,7 @@ Class CardDeckController extends AbstractController
         if ($num > count($deck->getDeck())) {
             throw new \Exception("För högt nummer!");
         }
-
         $card = $deck->draw($num);
-        var_dump($card->getPosition());
         $drawnCards = $session->get('drawn_cards');
         $drawnCards[] = $card;
         $session->set("drawn_cards", $drawnCards);
@@ -167,6 +165,19 @@ Class CardDeckController extends AbstractController
         ];
         
         return $this->render('card/card_deck_draw.html.twig', $data);
+    }
+
+    #[Route("/card/display_drawn", name: "drawn_display")]
+    public function drawnDisplay(
+        Request $request,
+        SessionInterface $session
+    ): Response
+    {
+        $data = [
+            "card_deck" => ($session->get('drawn_cards')),
+        ];
+        
+        return $this->render('card/drawn_display.html.twig', $data);
     }
 
     

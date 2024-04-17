@@ -3,10 +3,11 @@
     <main class="main">
         <h1>Card Deck</h1>
         <h2> Drawn card: </h2>
+        <p>Note: card number is based on the count from left to right up to down when choosing a number</p>
         <div class="card drawn">
             <h3 class="{{card_draw.getType()}} type">{{card_draw.getType()}}</h3>
             <h3 class="value {{card_draw.getType()}}">{{ card_draw.getValue()}}</h3>
-            <p> {{ card_draw.getPosition()}} </p>
+            <p> {{ card_draw.getPosition() +1}} </p>
         </div>
 
         <div class="card-container">
@@ -14,7 +15,7 @@
                 <div class="card">
                     <h3 class="{{card.getType()}} type">{{card.getType()}}</h3>
                     <h3 class="value {{card.getType()}}">{{ card.getValue()}}</h3>
-                    <p> {{ card.getPosition()}} </p>
+                    <p> {{ card.getPosition() +1}} </p>
                 </div>
             {% endfor %}
         </div>

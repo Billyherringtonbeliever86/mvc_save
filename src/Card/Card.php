@@ -3,15 +3,18 @@
 namespace App\Card;
 
 class Card
-{
+{   
+    // sortIndex = the cards position when being sorted, is not changable.
+    // index = the cards internal index value in the deck stored in the card, is changable.
     protected $card;
     protected $type;
     protected $value;
+    protected $sortIndex;
     protected $index;
     public $values = ["2","3","4","5","6","7","8","9","10","J","Q","K","A"];
     public $types = ["Hearts", "Clubs", "Spades", "Diamonds"];
 
-    public function __construct($value = null, $type = null, $index = null)
+    public function __construct($value = null, $type = null, $index = null, $sortIndex = null)
     {
         if (!($value && $type)) {
             $this->card = null;
@@ -20,9 +23,11 @@ class Card
             $this->type = $type;
             $this->value = $value;
             $this->index = $index;
+            $this->sortIndex = $sortIndex;
         }
     }
 
+    // initiates values to an empty card object and returns itself.
     public function deal(): string
     {
         $type = $this->types[random_int(0, 3)];
@@ -56,5 +61,10 @@ class Card
     {
         $this->index=$position;
     } 
+
+    public function getSortIndex(): int
+    {
+        return $this->sortIndex;
+    }
 
 }
