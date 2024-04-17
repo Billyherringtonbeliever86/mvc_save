@@ -6,7 +6,14 @@
     
     <div class = main>
     <h1> JSon apis </h1>
-        <a href = "{{ app.request.baseUrl }}/api/qoute/">Qoutes</a>
+        <a href = "{{ app.request.baseUrl }}/api/qoute/">Qoutes</a> Ger dagens qoute<br>
+        <a href="{{ path('api_deck')}}"> Show and sort deck</a> Displays and sorts the cardDeck in the session. <br>
+        <form method="post">
+            <input type="submit" value="shuffle" onClick="this.form.action='{{ path('api_deck_shuffle') }}';">
+        </form> shuffles and displays the cardDeck in session
+
+
+
     </div>
 
 

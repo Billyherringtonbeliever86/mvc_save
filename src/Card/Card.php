@@ -6,6 +6,7 @@ class Card
 {   
     // sortIndex = the cards position when being sorted, is not changable.
     // index = the cards internal index value in the deck stored in the card, is changable.
+    // both variablesabove are only relative when used in another class like DeckOfCards or CardHand.
     protected $card;
     protected $type;
     protected $value;

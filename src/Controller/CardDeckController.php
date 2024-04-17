@@ -110,8 +110,9 @@ Class CardDeckController extends AbstractController
     ): Response
     {
         $deck = $session->get('card_deck');
-        shuffle($deck->cardDeck);
-        $deck->arrangeDeck();
+        // shuffle($deck->cardDeck);
+        // $deck->arrangeDeck();
+        $deck->shuffle();
         $session->set("card_deck", $deck);
         $data = [
             "card_deck" => ($session->get('card_deck')),

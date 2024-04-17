@@ -6,7 +6,7 @@ use App\Card\CardGraphic;
 
 class DeckOfCards 
 {   
-    // NOTE array is filled with card OBJECTS not string representations
+    // NOTE cardDeck array is filled with card OBJECTS not string representations
     public $cardDeck = [];
     public $values = ["2","3","4","5","6","7","8","9","10","J","Q","K","A"];
     public $types = ["Hearts", "Clubs", "Spades", "Diamonds"];
@@ -18,7 +18,7 @@ class DeckOfCards
         $this->initiateCards($choice);
     }
 
-    //  initiates and creates all the cards objects and adds the tho the cardDeck array
+    //  initiates and creates all the cards objects and adds them to the this cardDeck array
     public function initiateCards($choice): void
     {   
         if ($choice == "standard") {
@@ -56,8 +56,7 @@ class DeckOfCards
         return $deck;
     }
 
-    // sorts the this cardDeck variable based on the individuals card object sortIndex number
-    // 
+    // sorts the this cardDeck array based on the individuals card object sortIndex number
     public function sortDeck(): void 
     {
         $sortedDeck = [];
@@ -73,6 +72,7 @@ class DeckOfCards
 
     // fixes the cardDecks card ibject index position and every Card object internal index variable to the same and 
     // reasures no numbers are skipped in the deck for example when a card has been drawn.
+    // also fixes so cards always are displayed in the cardDeck index order as is most logical.
     public function arrangeDeck(): void 
     {   
         // echo "arange";
@@ -98,4 +98,11 @@ class DeckOfCards
         $this->arrangeDeck();
         return $card;
     }   
+
+    // shuffles the this cardDeck array and then arranges it so card->index mathes cardDeck array index position
+    public function shuffle(): void 
+    {
+        shuffle($this->cardDeck);
+        $this->arrangeDeck();
+    }
 }
