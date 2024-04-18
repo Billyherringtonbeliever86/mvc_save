@@ -13,8 +13,19 @@
         Draw    <a href={{path('card_deck_draw')}}> Draws a card from the deck and displays it and the rest of the deck </a> <br>
         Display Drawn Cards    <a href={{path('drawn_display')}}> Display all drawn cards from the deck </a> <br>
 
-
-            
+        <h1> om klasserna </h1>
+        <p>
+            Jag har skappat 4 classer Card, CardGraphic, CardHand, DeckofCards.
+            Card är bass klassen och representerar ett kort, dess värde position och typ.
+            CardGraphic ärver av card och är en extention som inkluderar en funcition getType()
+            som retunerar kort klädslen som ett tecken tex: ♥.
+            CardHand är en klass om använder sig men ärver inte av card klassen.
+            Den representerar en kort hand eller en array med card objekt i.
+            DeckOfCards är som CardHand fast den representerar och initierar en hel kortlek på 52 kort
+            alltså 52 card object som den kan hantera.
+        
+        </p>
+            <img src="{{ asset('img/card_uml.png') }}" alt="bild" class="uml-bild">
             
     </main>
 
