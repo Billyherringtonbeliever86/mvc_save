@@ -17,12 +17,12 @@
         
         <form method="post" id="drawForm">
             <input type="submit" value="Draw Random Card" onClick="this.form.action='{{ path('api_deck_draw_random') }}';">
-        </form><br>
+        </form> Draws and displays random card from the deck and display the deck<br>
 
         <form method="post" id="drawForm">
             <input type="number" value="1" min="1" max="52" name="num" id="numInput">
-            <input type="submit" value="Draw Card" onClick="this.form.action='{{ path('post_bridge') }}';">
-        </form>
+            <input type="submit" value="Draw Cards" onClick="this.form.action='{{ path('post_bridge') }}';">
+        </form> Draws and displays a choosen amount of cards form the deck
         
 
 

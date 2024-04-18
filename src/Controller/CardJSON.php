@@ -19,8 +19,7 @@ class CardJSON extends AbstractController
     #[Route("/api/deck", name: "api_deck", methods: ['GET'])]
     public function cardDeckApi(
         SessionInterface $session,
-    ): Response
-    {
+    ): Response {
         $deck = $session->get("card_deck");
         $deck->sortDeck();
         $session->set("card_deck", $deck);
@@ -38,8 +37,7 @@ class CardJSON extends AbstractController
     #[Route("/api/deck/shuffle", name: "api_deck_shuffle", methods: ['POST'])]
     public function cardDeckApiShuffle(
         SessionInterface $session,
-    ): Response
-    {
+    ): Response {
         $deck = $session->get("card_deck");
         $deck->shuffle();
         $session->set("card_deck", $deck);
@@ -58,14 +56,13 @@ class CardJSON extends AbstractController
     public function cardDeckApiDrawRandom(
         SessionInterface $session,
         Request $request,
-    ): Response
-    {
-        
+    ): Response {
+
         $deck = $session->get("card_deck");
-        
-            $card = $deck->draw();
-            $card = $card->getCard();
-        
+
+        $card = $deck->draw();
+        $card = $card->getCard();
+
         $session->set("card_deck", $deck);
         $deck = $deck->getDeckCards();
         $data = [
@@ -77,25 +74,35 @@ class CardJSON extends AbstractController
         );
         return $response;
     }
-    
+
     #[Route("/api/deck/draw/{num<\d+>}", name: "api_deck_draw", methods: ['POST', 'GET'])]
     public function cardDeckApiDraw(
         SessionInterface $session,
         Request $request,
-    ): Response
-    {
-        $num = $request->attributes->get('num');
-        $deck = $session->get("card_deck");
+    ): Response {
+        $num = $request->get('num');
+        $deck = $session->get('card_deck');
         if ($num > count($deck->getDeck())) {
             throw new \Exception("För högt nummer!");
         }
-            $card = $deck->draw($num);
-            $card = $card->getCard();
-        
+
+        $i = 0;
+        $drawnCards = [];
+        $drawnCardsRepresent = [];
+        while ($i < $num) {
+            $card = $deck->draw();
+            $drawnCards[] = $card;
+            $drawnCardsRepresent[] = $card->getCard();
+            $i++;
+        }
+        $deckCards = $deck->getDeckCards();
+        $drawnCardsOld = $session->get('drawn_cards');
+        $allDrawnCards = array_merge($drawnCards, $drawnCardsOld);
+        $session->set("drawn_cards", $allDrawnCards);
         $session->set("card_deck", $deck);
-        $deck = $deck->getDeckCards();
         $data = [
-            "card" => $card,
+            "card_draw" => $drawnCardsRepresent,
+            "card_deck" => $deckCards,
         ];
         $response = new JsonResponse($data);
         $response->setEncodingOptions(
@@ -110,11 +117,11 @@ class CardJSON extends AbstractController
     public function yourAction(Request $request)
     {
 
-    $number = $request->request->get('num');
+        $number = $request->request->get('num');
 
-    $actionUrl = $this->generateUrl('api_deck_draw', ['num' => $number]);
-    echo $actionUrl;
-    return $this->redirect($actionUrl);
+        $actionUrl = $this->generateUrl('api_deck_draw', ['num' => $number]);
+        echo $actionUrl;
+        return $this->redirect($actionUrl);
     }
 
 
