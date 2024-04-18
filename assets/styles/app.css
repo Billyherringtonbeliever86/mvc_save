@@ -137,12 +137,13 @@ ul .dicearea li {
 .card {
     display: flex;
     position: relative;
-    width: 80px;
+    min-width: 80px;
     height: 120px;
     border: #000 solid 3px;
     border-radius: 10px;
     margin-top: 7px;
     font-size: 30px;
+    margin-left: 7px;
 
 }
 
@@ -168,4 +169,12 @@ ul .dicearea li {
 
 .drawn {
     size: 5em;
+}
+
+.draw-container {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    margin: 0 auto;
+
 }

@@ -1,0 +1,27 @@
+{% extends "base.html.twig" %}
+{% block body %}
+    <main class="main">
+        <h1>Card Deck</h1>
+        <h2> Drawn card: </h2>
+        <p>Note: card number is based on the count from left to right up to down when choosing a number</p>
+        <div class="draw-container">
+            {% for card in card_draw %}
+                <div class="card drawn">
+                    <h3 class="{{card.getType()}} type">{{card.getType()}}</h3>
+                    <h3 class="value {{card.getType()}}">{{ card.getValue()}}</h3>
+                    <p> {{ card.getPosition() +1}} </p>
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="card-container">
+            {% for card in card_deck.getDeck() %}
+                <div class="card">
+                    <h3 class="{{card.getType()}} type">{{card.getType()}}</h3>
+                    <h3 class="value {{card.getType()}}">{{ card.getValue()}}</h3>
+                    <p> {{ card.getPosition() +1}} </p>
+                </div>
+            {% endfor %}
+        </div>
+    </main>
+{% endblock %}

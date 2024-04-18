@@ -155,17 +155,25 @@ Class CardDeckController extends AbstractController
         if ($num > count($deck->getDeck())) {
             throw new \Exception("För högt nummer!");
         }
-        $card = $deck->draw($num);
-        $drawnCards = $session->get('drawn_cards');
-        $drawnCards[] = $card;
-        $session->set("drawn_cards", $drawnCards);
+
+        $i = 0;
+        $drawnCards = [];
+        while ($i < $num) {
+            $card = $deck->draw();
+            $drawnCards[] = $card;
+            $i++;
+        }
+        
+        $drawnCardsOld = $session->get('drawn_cards');
+        $allDrawnCards = array_merge($drawnCards, $drawnCardsOld);
+        $session->set("drawn_cards", $allDrawnCards);
         $session->set("card_deck", $deck);
         $data = [
-            "card_draw" => $card,
+            "card_draw" => $drawnCards,
             "card_deck" => ($session->get('card_deck')),
         ];
         
-        return $this->render('card/card_deck_draw.html.twig', $data);
+        return $this->render('card/card_deck_draw_num.html.twig', $data);
     }
 
     #[Route("/card/display_drawn", name: "drawn_display")]
