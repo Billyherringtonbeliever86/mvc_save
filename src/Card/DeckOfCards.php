@@ -71,7 +71,7 @@ class DeckOfCards
         $this->cardDeck = $sortedDeck;
     }
 
-    // fixes the cardDecks card ibject index position and every Card object internal index variable to the same and
+    // fixes the cardDecks card object index position and every Card object internal index variable to the same and
     // reasures no numbers are skipped in the deck for example when a card has been drawn.
     // also fixes so cards always are displayed in the cardDeck index order as is most logical.
     public function arrangeDeck(): void
